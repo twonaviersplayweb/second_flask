@@ -1,6 +1,5 @@
-__author__ = 'yooner'
-
 from . import db
+
 
 class Role(db.Model):
     __tablename__ = 'roles'
@@ -11,6 +10,7 @@ class Role(db.Model):
     def __repr__(self):
         return '<Role %r>' % self.name
 
+
 class User(db.Model):
     __tablebname__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
@@ -18,5 +18,5 @@ class User(db.Model):
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
     def __repr__(self):
-        return '<User %r>'% self.username
+        return '<User %r>' % self.username
 

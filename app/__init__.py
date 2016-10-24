@@ -1,4 +1,3 @@
-__author__ = 'yooner'
 import os
 from flask import Flask
 from flask.ext.bootstrap import Bootstrap
@@ -7,6 +6,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 basedir = os.path.abspath(os.path.dirname(__file__))
 bootstrap = Bootstrap()
 db = SQLAlchemy()
+
 
 def create_app():
     app = Flask(__name__)
