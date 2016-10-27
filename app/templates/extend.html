@@ -19,4 +19,7 @@
 <h1>Hello, {% if name %}{{ name }}{% else %}Stranger{% endif %}!</h1>
 </div>
 {{ wtf.quick_form(form) }}
+{% if current_user.is_authenticated %}
+    <h1>{{  current_user.username }}</h1>
+{% endif %}
 {% endblock %}
