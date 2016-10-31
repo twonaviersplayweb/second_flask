@@ -2,24 +2,9 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block title %}SecondFlasky{% endblock %}
-
-
-
-{#<!-- Single button -->#}
-{#    {{ super() }}#}
-{#    <span class="label label-default">Default</span>#}
-{#    <span class="label label-primary">Primary</span>#}
-{#    <span class="label label-success">Success</span>#}
-{#    <span class="label label-info">Info</span>#}
-{#    <span class="label label-warning">Warning</span>#}
-{#    <span class="label label-danger">Danger</span>#}
-
 {% block page_content %}
 <div class="page-header">
 <h1>Hello, {% if name %}{{ name }}{% else %}Stranger{% endif %}!</h1>
 </div>
 {{ wtf.quick_form(form) }}
-{% if current_user.is_authenticated %}
-    <h1>{{  current_user.username }}</h1>
-{% endif %}
 {% endblock %}

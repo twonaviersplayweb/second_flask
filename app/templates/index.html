@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-{% import 'macros.html' as macros %}
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-    <h1>Second Times</h1>
-    <ul>
-        {% for comment in lista %}
-            {{ macros.render_comment('hello') }}
-            <li>{{ comment }}</li>
-            {{ macros.render_comment(comment) }}
-        {% endfor %}
-    </ul>
-
-</body>
-</html>
+{% extends 'base.html' %}
+<h1>second flask</h1>
+{% block page_content %}
+{% if current_user.is_authenticated %}
+    <h1>hello {{  current_user.username }}</h1>
+{% endif %}
+{% endblock %}
