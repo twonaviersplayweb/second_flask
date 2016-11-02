@@ -12,10 +12,11 @@ class RegisterForm(Form):
     username = StringField('name', validators=[Required()])
     email = StringField('Email', validators=[Required(), Length(1, 64), Email()])
     password = PasswordField('Password', validators=[Required()])
-    submit = SubmitField('Log in')
+    submit = SubmitField('Register')
 
 
 class LoginForm(Form):
     username = StringField('username', validators=[Required()])
     password = PasswordField('password', validators=[Required()])
     remember_me = BooleanField('Keep me logged in')
+    submit = SubmitField('Log in')

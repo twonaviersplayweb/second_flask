@@ -3,7 +3,8 @@ from . import main
 from forms import NameForm, LoginForm, RegisterForm
 from ..models import User, Role
 from flask.ext.login import login_user, current_user, login_required, logout_user
-from app import db
+from app import db, mail
+from flask.ext.mail import Message
 
 
 @main.route('/', methods=['GET', 'POST'])
@@ -16,7 +17,6 @@ def index():
             if current_user.is_authenticated:
                 print 'haha'
             return redirect(url_for('.show'))
-    flash('please login')
     return render_template('extend.html', form=form)
 
 
@@ -33,6 +33,10 @@ def register():
         user.username = form.username.data
         db.session.add(user)
         db.session.commit()
+        msg = Message("Hi!This is a test ", sender='weilezhuce12345@163.com', recipients=['playweb@163.com'])
+        msg.body = 'This is a email'
+        msg.html = '<b>HTML</b> body'
+        mail.send(msg)
         return redirect(url_for('.login'))
     return render_template('register.html', form=form)
 
@@ -41,8 +45,8 @@ def register():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username).first()
-        if user is not None:
+        user = User.query.filter_by(username=form.username.data).first()
+        if user is not None and user.password_hash(form.password.data):
             login_user(user, form.remember_me.data)
             return redirect(url_for('.show'))
         flash('usr not found')
